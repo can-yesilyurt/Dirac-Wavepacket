@@ -1,0 +1,103 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Shaped barrier with reflecting y-walls (mass confinement)
+#
+# M(y)·σz opens a gap at the channel walls — correct Dirac confinement.
+# Wave bounces off walls and remains in the channel.
+# Budget: T + R + P_remaining = 1  (no side-wall loss)
+# ──────────────────────────────────────────────────────────────────────────────
+
+title: "Valley Phase Gate (θ=0°)"
+
+
+grid:
+  Lx: 300.0
+  Ly: 300.0
+  Nx: 512
+  Ny: 512
+
+physics:
+  vf: 1.0
+  tilt: [0.0, 0.35]
+  valleys: both
+
+time:
+  dt: 0.04
+  n_steps: 16000
+  save_every: 100
+
+wavepacket:
+  k0: 0.8
+  theta: 0.0
+  sigma_x: 9.0
+  sigma_y: 9.0
+  x_source: -0.5
+
+potential:
+  type: polygon
+  height: 0.228
+  smoothing_width: 3.0
+  vertices:
+    - [-10, "-Ly"]      # bottom-left
+    - [50, "-Ly"]       # bottom-right
+    - [-7, "Ly"]           # waist (the new degree of freedom)
+    - [-10, "Ly"]        # top-right
+    - [-10, "-Ly"]       # top-left
+
+#potential:
+#  type: shaped
+#  height:  0.0
+#  smoothing_width: 0.0
+#  edges: [-15.0, 60.0, -15.0, -15.0]
+
+coupling:
+  enabled: false
+  type: barrier              # "barrier" | "uniform" | "defect_line"
+  strength: 0.0
+  region_threshold: 0.5      # for type="barrier": V > threshold·|V0| → active
+  line_position: 0.0         # for type="defect_line"
+  line_width: 2.0 
+
+disorder:
+  enabled: false
+  dv: 0.05
+  lc: 5.0
+  seed: 42
+
+# Source-drain bias: rigid potential gradient across the channel.
+# Positive V_sd → source (left) is higher than drain (right),
+# pushing carriers toward +x and softly confining reflected waves.
+# Keep |V_sd| ≪ Ef to stay in the small-bias regime.
+bias:
+  enabled: false
+  V_sd: 0.02            # ~9% of V0=0.228 — small-bias regime
+  type: linear          # "linear" (full-domain ramp) | "localized" (sigmoid)
+  x_center: 0.0         # zero-reference (linear) or sigmoid centre (localized)
+  L_drop: null          # null → Lx for linear, 10 u for localized
+  
+absorber:
+  width_frac: 0.1
+  strength: 0.05
+  y_bc: absorbing
+  y_width_frac: 0.06
+  wall_mass: 0.0                  # auto: 20 × max(Ef, V0)
+
+detector:
+  enabled: true
+  auto_source: false
+  auto_stop: true
+  auto_grid: false
+  stop_threshold: 0.003
+
+output:
+  colormap: seismic
+  show_potential: true
+  show_spinor: false
+  dpi: 300
+  figsize: [10.0, 10.0]
+  show_current: false
+  current_style: stream
+  current_stride: 20
+  current_min_density_frac: 0.01
+  current_stream_density: 1.25
+  current_stream_linewidth: 0.015
+  current_stream_arrowsize: 0.05

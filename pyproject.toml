@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dirac-wavepacket"
+version = "1.0.0"
+description = "Python package for time-dependent wave-packet transport in 2D Dirac and Weyl systems with tilted, anisotropic cones, arbitrary barrier geometries, valley chirality, and intervalley coupling."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Can Yesilyurt", email = "cyesil@nanorescenter.com" },
+]
+keywords = [
+    "quantum-transport",
+    "dirac-equation",
+    "weyl-semimetal",
+    "split-operator",
+    "wavepacket",
+    "valley",
+    "electronic-structure",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+dependencies = [
+    "numpy>=2.2,<3.0",
+    "scipy>=1.15,<2.0",
+    "matplotlib>=3.9,<4.0",
+    "PyYAML>=6.0.3,<7.0",
+    "Pillow>=11.1,<13.0",
+]
+
+[project.optional-dependencies]
+# FFT acceleration (recommended for production sweeps)
+fft = ["pyFFTW>=0.14,<0.16"]
+# Development / testing
+dev = [
+    "pytest>=8.0",
+    "pytest-timeout>=2.3",
+]
+# Everything for reproducing the paper figures
+all  = ["dirac-wavepacket[fft,dev]"]
+
+[project.urls]
+Homepage      = "https://github.com/can-yesilyurt/Dirac-Wavepacket"
+Documentation = "https://github.com/can-yesilyurt/Dirac-Wavepacket/blob/main/docs/"
+Issues        = "https://github.com/can-yesilyurt/Dirac-Wavepacket/issues"
+
+[project.scripts]
+# Primary CLI
+dwp           = "dirac_wavepacket.__main__:main"
+# Production drivers (callable from anywhere after `pip install`)
+dwp-sweep     = "dirac_wavepacket.cli.sweep_parallel:main"
+dwp-sweep-v0  = "dirac_wavepacket.cli.sweep_V0:main"
+dwp-sweep-vsd = "dirac_wavepacket.cli.sweep_Vsd:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["dirac_wavepacket*"]
+exclude = ["tests*", "examples*", "docs*", "Figures*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts    = "-ra -q --timeout=180"
+testpaths  = ["tests"]
