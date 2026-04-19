@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dirac-wavepacket"
-version = "1.0.0"
+version = "1.0.1"
 description = "Python package for time-dependent wave-packet transport in 2D Dirac and Weyl systems with tilted, anisotropic cones, arbitrary barrier geometries, valley chirality, and intervalley coupling."
 readme = "README.md"
 license = { file = "LICENSE" }

@@ -2,6 +2,10 @@
 
 **Time-dependent wave-packet transport in 2D tilted Dirac/Weyl systems.**
 
+[![PyPI version](https://img.shields.io/pypi/v/dirac-wavepacket.svg)](https://pypi.org/project/dirac-wavepacket/)
+[![Python versions](https://img.shields.io/pypi/pyversions/dirac-wavepacket.svg)](https://pypi.org/project/dirac-wavepacket/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 `dirac_wavepacket` solves the time-dependent Dirac equation for a two-component
 spinor on a 2D grid using a symmetric split-operator Fourier scheme. It
 is designed for continuum-limit transport calculations in Dirac and
@@ -36,13 +40,26 @@ single-valley propagations bit-for-bit.
 ## Installation
 
 ```bash
+pip install dirac-wavepacket
+```
+
+Optional extras:
+
+```bash
+pip install "dirac-wavepacket[fft]"    # pyFFTW acceleration (2–5× speedup)
+pip install "dirac-wavepacket[dev]"    # pytest and test utilities
+pip install "dirac-wavepacket[all]"    # both of the above
+```
+
+Requires Python ≥ 3.11. Platform-independent (Linux, macOS, Windows).
+
+### For contributors (editable install from source)
+
+```bash
 git clone https://github.com/can-yesilyurt/Dirac-Wavepacket
 cd Dirac-Wavepacket
-pip install -e .
-# Optional: FFT acceleration (2–5× speedup on typical problems)
-pip install -e ".[fft]"
-# For running the tests
 pip install -e ".[dev]"
+python -m pytest tests/ -q
 ```
 
 ## Quickstart
@@ -102,30 +119,31 @@ examples/             Self-contained worked examples
   configs/            YAML configurations
 tests/                pytest suite
 docs/                 User guide and theory notes
-docs/paper/           SoftwareX manuscript draft
 ```
 
 ## Citation
 
-If `dirac_wavepacket` contributes to a publication, please cite this
-repository. A software paper describing the package is in preparation
-for submission to *SoftwareX*; citation details will be updated here
-once the paper is accepted. In the meantime, please cite as:
+If `dirac-wavepacket` contributes to a publication, please cite the
+Zenodo archive. A software paper describing the package is under review
+at *SoftwareX*; citation details will be updated here once the paper is
+accepted. In the meantime, please cite as:
 
 ```bibtex
 @software{yesilyurt_dirac_wavepacket_2026,
-  author  = {Yesilyurt, Can},
-  title   = {Dirac-Wavepacket: time-dependent wave-packet transport
-             in two-dimensional tilted Dirac and Weyl systems},
-  year    = {2026},
-  version = {1.0.0},
-  url     = {https://github.com/can-yesilyurt/Dirac-Wavepacket}
+  author    = {Yesilyurt, Can},
+  title     = {Dirac-Wavepacket: time-dependent wave-packet transport
+               in two-dimensional tilted Dirac and Weyl systems},
+  year      = {2026},
+  version   = {1.0.1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.XXXXXXX},
+  url       = {https://github.com/can-yesilyurt/Dirac-Wavepacket}
 }
 ```
 
-A Zenodo DOI will be minted on the first tagged release and the
-citation above will be updated accordingly.
+*(Replace `XXXXXXX` with the actual Zenodo DOI minted on the v1.0.1
+GitHub release.)*
 
 ## License
 
-MIT — see `LICENSE`.
+MIT — see [`LICENSE`](LICENSE).

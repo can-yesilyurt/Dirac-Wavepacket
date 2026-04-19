@@ -4,6 +4,28 @@ All notable changes to `dirac_wavepacket` are documented here. The format follow
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] — 2026-04-19
+
+Housekeeping release. First version archived on Zenodo (the GitHub↔Zenodo
+integration was activated after v1.0.0 was tagged). No changes to the
+public Python API; PyPI users who installed v1.0.0 see identical package
+behaviour at v1.0.1.
+
+### Changed
+- README installation section reorganised: PyPI
+  (`pip install dirac-wavepacket`) is now the primary path, with
+  editable-from-clone (`pip install -e .`) retained as the contributor
+  install.
+- Repository housekeeping: removed stale `docs/paper/` draft artifacts
+  left over from internal pre-release development. The accompanying
+  *SoftwareX* manuscript lives outside the package during the
+  submission cycle.
+
+### Added
+- Published to PyPI: `pip install dirac-wavepacket`
+  (https://pypi.org/project/dirac-wavepacket/).
+- Zenodo archival DOI for citation and long-term preservation.
+
 ## [1.0.0] — 2026-04-18 (initial public release)
 
 First public release. Captures the development previously tagged as
