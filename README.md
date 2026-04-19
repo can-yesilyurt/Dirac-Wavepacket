@@ -5,6 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/dirac-wavepacket.svg)](https://pypi.org/project/dirac-wavepacket/)
 [![Python versions](https://img.shields.io/pypi/pyversions/dirac-wavepacket.svg)](https://pypi.org/project/dirac-wavepacket/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19651771.svg)](https://doi.org/10.5281/zenodo.19651771)
 
 `dirac_wavepacket` solves the time-dependent Dirac equation for a two-component
 spinor on a 2D grid using a symmetric split-operator Fourier scheme. It
@@ -136,13 +137,10 @@ accepted. In the meantime, please cite as:
   year      = {2026},
   version   = {1.0.1},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXX},
-  url       = {https://github.com/can-yesilyurt/Dirac-Wavepacket}
+  doi       = {10.5281/zenodo.19651771},
+  url       = {https://doi.org/10.5281/zenodo.19651771}
 }
 ```
-
-*(Replace `XXXXXXX` with the actual Zenodo DOI minted on the v1.0.1
-GitHub release.)*
 
 ## License
 
